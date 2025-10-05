@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { Send, PanelLeft, PanelRight } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -85,9 +86,10 @@ export function ChatInterface({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: [
+            { role: 'system', content: 'You are a helpful assistant that can answer questions about the documents and summaries provided. You will give a concise answer to the question and a summary of the documents in less than 3 sentences.' },
             { role: 'user', content: userMessage }
           ],
-          max_tokens: 512,
+          max_tokens: 256,
           temperature: 0.3
         })
       });
@@ -268,7 +270,9 @@ export function ChatInterface({
                     ? 'bg-[#0B3D91] text-white' 
                     : 'bg-gray-100 text-gray-900'
                 }`}>
-                  <p className="leading-relaxed">{message.content}</p>
+                  <div className="leading-relaxed prose prose-sm max-w-none">
+                    <ReactMarkdown>{message.content}</ReactMarkdown>
+                  </div>
                   
                   {/* Mostrar PDFs si existen */}
                   {message.pdfs && (
