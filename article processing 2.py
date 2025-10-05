@@ -91,7 +91,7 @@ class WebScraper:
 
 
 class LocalOpenAIProcessor:
-    def __init__(self, base_url: str = "http://127.0.0.1:1234/v1", model: str = "openai/gpt-oss-20b"):
+    def __init__(self, base_url: str = "http://192.168.137.1:1234/v1", model: str = "openai/gpt-oss-20b"):
         self.base_url = base_url
         self.model = model
 
