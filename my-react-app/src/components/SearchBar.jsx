@@ -63,7 +63,7 @@ export function SearchBar() {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
         <Input
           type="text"
-          placeholder="Buscar en la enciclopedia espacial..."
+          placeholder="Search the space encyclopedia..."
           value={query}
           onChange={handleInputChange}
           className="pl-10 bg-white border-2 border-white rounded-full h-10 shadow-inner focus:border-[#FC3D21] focus:ring-2 focus:ring-[#FC3D21]/30 transition-all duration-200"
@@ -76,7 +76,7 @@ export function SearchBar() {
           {loading && (
             <div className="p-4 text-center text-gray-500">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#FC3D21] mx-auto"></div>
-              <p className="mt-2">Buscando...</p>
+              <p className="mt-2">Searching...</p>
             </div>
           )}
           
@@ -92,7 +92,7 @@ export function SearchBar() {
           
           {!loading && !error && results.length === 0 && query && (
             <div className="p-4 text-center text-gray-500">
-              <p>No se encontraron resultados para "{query}"</p>
+              <p>No results found for "{query}"</p>
             </div>
           )}
         </div>

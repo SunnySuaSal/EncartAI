@@ -39,9 +39,9 @@ export function ChatInterface({
     setInputValue('');
     setIsTyping(true);
 
-    // Simular respuesta del bot
-    setTimeout(() => {
-      const response = generateBotResponse(message);
+    // Simular respuesta del bot (15s)
+    setTimeout(async () => {
+      const response = await generateBotResponse(message);
       const botResponse = {
         id: (Date.now() + 1).toString(),
         type: 'bot',
@@ -52,10 +52,10 @@ export function ChatInterface({
       };
       setMessages(prev => [...prev, botResponse]);
       setIsTyping(false);
-    }, 1500);
+    }, 15000);
   };
 
-  const generateBotResponse = (userMessage) => {
+  const generateBotResponse = async (userMessage) => {
     const lowerMessage = userMessage.toLowerCase();
     
     // Detectar si la pregunta es sobre artículos o investigación
@@ -78,7 +78,30 @@ export function ChatInterface({
       };
     }
 
-    // Respuestas específicas para diferentes temas
+    // Para mensajes no relacionados con investigación, intentar generar respuesta vía backend AI
+    try {
+      const resp = await fetch('http://localhost:8000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            { role: 'user', content: userMessage }
+          ],
+          max_tokens: 512,
+          temperature: 0.3
+        })
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data && data.content) {
+          return { content: data.content, pdfs: null, multimedia: null };
+        }
+      }
+    } catch (e) {
+      // Si falla, continuar con respuestas locales
+    }
+
+    // Respuestas específicas para diferentes temas (fallback local)
     if (lowerMessage.includes('microgravity') || lowerMessage.includes('gravity')) {
       return {
         content: "Microgravity is one of the most fascinating aspects of space research! In the absence of Earth's gravity, biological systems behave completely differently. NASA studies show that microgravity affects everything from bone density to fluid distribution in the body. Astronauts experience muscle atrophy, bone loss, and changes in cardiovascular function. These effects are crucial to understand for long-duration missions to Mars.",
@@ -152,7 +175,7 @@ export function ChatInterface({
   };
 
   const formatTime = (date) => {
-    return date.toLocaleTimeString('es-ES', { 
+    return date.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit' 
     });

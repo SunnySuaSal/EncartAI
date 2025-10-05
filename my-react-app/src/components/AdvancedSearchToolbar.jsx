@@ -8,33 +8,33 @@ import { Badge } from "./ui/badge";
 const categories = [
   {
     id: "biologia",
-    title: "Biología Humana",
-    description: "Efectos del espacio en el cuerpo humano"
+    title: "Human Biology",
+    description: "Effects of space on the human body"
   },
   {
     id: "plantas",
-    title: "Plantas en el Espacio",
-    description: "Agricultura y botánica espacial"
+    title: "Plants in Space",
+    description: "Space agriculture and botany"
   },
   {
     id: "radiacion",
-    title: "Radiación",
-    description: "Exposición y protección radiológica"
+    title: "Radiation",
+    description: "Exposure and radiological protection"
   },
   {
     id: "microgravedad",
-    title: "Microgravedad",
-    description: "Efectos de la gravedad reducida"
+    title: "Microgravity",
+    description: "Effects of reduced gravity"
   },
   {
     id: "tecnologia",
-    title: "Tecnología",
-    description: "Innovaciones y sistemas espaciales"
+    title: "Technology",
+    description: "Space innovations and systems"
   },
   {
     id: "medicina",
-    title: "Medicina",
-    description: "Investigación médica en el espacio"
+    title: "Medicine",
+    description: "Medical research in space"
   }
 ];
 
@@ -136,12 +136,12 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                   className="flex items-center gap-2 text-[#0B3D91] hover:bg-[#0B3D91]/10"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Volver
+                  Back
                 </Button>
               )}
               <div>
-                <h2 className="text-2xl font-bold text-[#0B3D91] mb-2">Búsqueda Avanzada</h2>
-                <p className="text-gray-600">Busca artículos por título y categorías específicas</p>
+                <h2 className="text-2xl font-bold text-[#0B3D91] mb-2">Advanced Search</h2>
+                <p className="text-gray-600">Search articles by title and specific categories</p>
               </div>
             </div>
             <Button
@@ -150,7 +150,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
               className="flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              Filtros
+              Filters
               {showFilters ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </Button>
           </div>
@@ -161,7 +161,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Buscar por título del artículo..."
+                placeholder="Search by article title..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="pl-12 h-12 text-lg border-2 border-gray-200 rounded-xl focus:border-[#FC3D21] focus:ring-2 focus:ring-[#FC3D21]/30 transition-all duration-200"
@@ -171,12 +171,12 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
             {/* Advanced Filters */}
             {showFilters && (
               <div className="space-y-4 p-4 bg-gray-50/50 rounded-xl border border-gray-200">
-                <h3 className="font-semibold text-[#0B3D91]">Filtros Avanzados</h3>
+                <h3 className="font-semibold text-[#0B3D91]">Advanced Filters</h3>
                 
                 {/* Categories Selection */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Categorías ({selectedCategories.length} seleccionadas)
+                    Categories ({selectedCategories.length} selected)
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                     {categories.map((category) => (
@@ -204,7 +204,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Saltar artículos
+                      Skip articles
                     </label>
                     <Input
                       type="number"
@@ -216,7 +216,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Límite de resultados
+                      Results limit
                     </label>
                     <Input
                       type="number"
@@ -234,7 +234,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
             {/* Selected Categories Display */}
             {selectedCategories.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                <span className="text-sm text-gray-600">Categorías seleccionadas:</span>
+                <span className="text-sm text-gray-600">Selected categories:</span>
                 {selectedCategories.map((categoryId) => (
                   <Badge
                     key={categoryId}
@@ -259,12 +259,12 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                 {loading ? (
                   <>
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Buscando...
+                    Searching...
                   </>
                 ) : (
                   <>
                     <Search className="w-5 h-5 mr-2" />
-                    Buscar Artículos
+                    Search Articles
                   </>
                 )}
               </Button>
@@ -276,7 +276,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                   onClick={clearAllFilters}
                   className="h-12 px-6 rounded-xl"
                 >
-                  Limpiar Filtros
+                  Clear Filters
                 </Button>
               )}
             </div>
@@ -285,7 +285,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
           {/* Error Display */}
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
-              <p className="text-red-600 font-medium">Error en la búsqueda:</p>
+              <p className="text-red-600 font-medium">Search error:</p>
               <p className="text-red-500 text-sm">{error}</p>
             </div>
           )}
@@ -295,7 +295,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
             <div className="mt-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-[#0B3D91]">
-                  Resultados ({results.length})
+                  Results ({results.length})
                 </h3>
                 <Button
                   variant="ghost"
@@ -329,7 +329,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                             className="text-sm text-[#FC3D21] hover:underline"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            Ver artículo →
+                            View article →
                           </a>
                         </div>
                       </div>
@@ -338,7 +338,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                 </div>
               ) : (
                 <div className="text-center py-8 text-gray-500">
-                  <p>No se encontraron artículos con los criterios especificados.</p>
+                  <p>No articles found for the specified criteria.</p>
                 </div>
               )}
             </div>

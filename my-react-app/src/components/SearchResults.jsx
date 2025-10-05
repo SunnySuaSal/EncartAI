@@ -8,7 +8,7 @@ export function SearchResults({ results }) {
   return (
     <div className="py-2">
       <div className="px-4 py-2 text-sm font-semibold text-gray-700 border-b border-gray-200">
-        Resultados de búsqueda ({results.length})
+        Search results ({results.length})
       </div>
       <div className="max-h-80 overflow-y-auto">
         {results.map((item) => (
@@ -28,7 +28,7 @@ export function SearchResults({ results }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-shrink-0 p-1 text-gray-400 hover:text-[#FC3D21] transition-colors duration-150"
-                  title="Abrir enlace"
+                  title="Open link"
                 >
                   <ExternalLink className="w-4 h-4" />
                 </a>
