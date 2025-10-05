@@ -58,3 +58,17 @@ class CategoryCount(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+# Chat schemas
+class ChatMessage(BaseModel):
+    role: str
+    content: str
+
+class ChatRequest(BaseModel):
+    messages: List[ChatMessage]
+    max_tokens: Optional[int] = 512
+    temperature: Optional[float] = 0.3
+
+class ChatResponse(BaseModel):
+    content: str

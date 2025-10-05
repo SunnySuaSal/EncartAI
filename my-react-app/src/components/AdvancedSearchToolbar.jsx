@@ -67,7 +67,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
       params.append('skip', skip.toString());
       params.append('limit', limit.toString());
 
-      const response = await fetch(`http://127.0.0.1:8000/articles/search/advanced/?${params.toString()}`, {
+      const response = await fetch(`http://192.168.137.229:8000/articles/search/advanced/?${params.toString()}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

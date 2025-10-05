@@ -19,7 +19,7 @@ export function SearchBar() {
     setError(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/abstracts/search/?q=" + searchQuery + "&skip=" + skip + "&limit=" + limit, {
+      const response = await fetch("http://192.168.137.229:8000/abstracts/search/?q=" + searchQuery + "&skip=" + skip + "&limit=" + limit, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

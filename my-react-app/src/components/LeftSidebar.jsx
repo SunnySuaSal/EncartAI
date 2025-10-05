@@ -56,7 +56,7 @@ export function LeftSidebar({ onNavigateToAdvancedSearch, onToggle }) {
   const fetchCategoryCount = async (categoryId) => {
     try {
       setLoading(prev => ({ ...prev, [categoryId]: true }));
-      const response = await fetch(`http://127.0.0.1:8000/categories/${categoryId}/count`);
+      const response = await fetch(`http://192.168.137.229:8000/categories/${categoryId}/count`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

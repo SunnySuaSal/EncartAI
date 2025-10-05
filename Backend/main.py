@@ -9,6 +9,8 @@ from crud import (
     get_abstract, get_abstracts, create_abstract, update_abstract, delete_abstract, search_abstracts,
     get_abstracts_by_article, search_articles_by_query_and_categories, count_articles_by_category
 )
+from schemas import ChatRequest, ChatResponse
+from moduleAI import LocalOpenAIProcessor
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -205,3 +207,23 @@ async def get_category_article_count(category_id: str, db: Session = Depends(get
         "category_id": category_id,
         "count": count
     }
+
+# Chat endpoint leveraging LocalOpenAIProcessor (LM Studio)
+processor = LocalOpenAIProcessor()
+
+@app.post("/chat", response_model=ChatResponse)
+async def chat_endpoint(payload: ChatRequest):
+    # Ensure system prompt exists for safety
+    messages = payload.messages
+    if not any(m.role == "system" for m in messages):
+        messages = ([{"role": "system", "content": "You are a helpful research assistant."}] +
+                    [m.model_dump() for m in messages])
+    else:
+        messages = [m.model_dump() for m in messages]
+
+    content = await processor.chat(
+        messages=messages,
+        max_tokens=payload.max_tokens or 512,
+        temperature=payload.temperature or 0.3,
+    )
+    return ChatResponse(content=content)
