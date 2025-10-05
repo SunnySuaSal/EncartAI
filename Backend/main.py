@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from database import get_db, engine
 from models import Base
@@ -13,6 +14,14 @@ from crud import (
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Article API", description="A simple API for managing articles")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # Orígenes permitidos
+    allow_credentials=True,
+    allow_methods=["*"], # Métodos permitidos
+    allow_headers=["*"], # Encabezados permitidos
+)
 
 @app.get("/")
 async def root():

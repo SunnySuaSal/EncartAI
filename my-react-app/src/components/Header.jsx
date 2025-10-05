@@ -1,6 +1,5 @@
-import { Search } from "lucide-react";
-import { Input } from "./ui/input";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { SearchBar } from "./SearchBar";
 
 export function Header() {
   return (
@@ -22,16 +21,7 @@ export function Header() {
         </div>
 
         {/* Barra de búsqueda */}
-        <div className="relative max-w-md w-full mx-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
-            <Input
-              type="text"
-              placeholder="Buscar en la enciclopedia espacial..."
-              className="pl-10 bg-white border-2 border-white rounded-full h-10 shadow-inner focus:border-[#FC3D21] focus:ring-2 focus:ring-[#FC3D21]/30 transition-all duration-200"
-            />
-          </div>
-        </div>
+        <SearchBar />
 
         {/* Elemento decorativo */}
         <div className="hidden md:flex items-center space-x-2">
