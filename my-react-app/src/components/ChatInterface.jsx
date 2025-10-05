@@ -55,7 +55,7 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white">
+    <div className="flex-1 flex flex-col bg-white dark:bg-background">
 
       {/* Área de mensajes */}
       <ScrollArea className="flex-1 p-8">
@@ -65,12 +65,12 @@ export function ChatInterface() {
               <div className={`max-w-[75%] ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
                 <div className={`inline-block p-4 rounded-2xl ${
                   message.type === 'user' 
-                    ? 'bg-[#0B3D91] text-white' 
-                    : 'bg-gray-100 text-gray-900'
+                    ? 'bg-[#0B3D91] dark:bg-primary text-white dark:text-primary-foreground' 
+                    : 'bg-gray-100 dark:bg-muted text-gray-900 dark:text-foreground'
                 }`}>
                   <p className="leading-relaxed">{message.content}</p>
                 </div>
-                <p className="text-xs text-gray-500 mt-2 px-1">
+                <p className="text-xs text-gray-500 dark:text-muted-foreground mt-2 px-1">
                   {formatTime(message.timestamp)}
                 </p>
               </div>
@@ -80,11 +80,11 @@ export function ChatInterface() {
           {isTyping && (
             <div className="flex justify-start">
               <div className="max-w-[75%]">
-                <div className="inline-block p-4 rounded-2xl bg-gray-100">
+                <div className="inline-block p-4 rounded-2xl bg-gray-100 dark:bg-muted">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-muted-foreground rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-muted-foreground rounded-full animate-bounce delay-75"></div>
+                    <div className="w-2 h-2 bg-gray-400 dark:bg-muted-foreground rounded-full animate-bounce delay-150"></div>
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export function ChatInterface() {
           {messages.length === 0 && (
             <div className="flex items-center justify-center h-full min-h-[400px]">
               <div className="text-center">
-                <p className="text-gray-500 text-lg">Escribe tu pregunta para comenzar</p>
+                <p className="text-gray-500 dark:text-muted-foreground text-lg">Escribe tu pregunta para comenzar</p>
               </div>
             </div>
           )}
@@ -102,7 +102,7 @@ export function ChatInterface() {
       </ScrollArea>
 
       {/* Input de mensaje */}
-      <div className="p-8 bg-white border-t border-gray-200">
+      <div className="p-8 bg-white dark:bg-background border-t border-gray-200 dark:border-border">
         <div className="flex space-x-4 max-w-3xl mx-auto">
           <Input
             type="text"
@@ -110,12 +110,12 @@ export function ChatInterface() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
-            className="flex-1 border border-gray-300 focus:border-[#0B3D91] focus:ring-1 focus:ring-[#0B3D91] rounded-xl h-12 px-4 bg-white"
+            className="flex-1 border border-gray-300 dark:border-border focus:border-[#0B3D91] dark:focus:border-primary focus:ring-1 focus:ring-[#0B3D91] dark:focus:ring-primary rounded-xl h-12 px-4 bg-white dark:bg-input"
           />
           <Button
             onClick={() => handleSendMessage(inputValue)}
             disabled={!inputValue.trim() || isTyping}
-            className="bg-[#0B3D91] hover:bg-[#0B3D91]/90 text-white rounded-xl h-12 px-6 transition-colors duration-200 disabled:opacity-50"
+            className="bg-[#0B3D91] dark:bg-primary hover:bg-[#0B3D91]/90 dark:hover:bg-primary/90 text-white dark:text-primary-foreground rounded-xl h-12 px-6 transition-colors duration-200 disabled:opacity-50"
           >
             <Send className="w-4 h-4" />
           </Button>
