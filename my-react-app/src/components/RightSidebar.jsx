@@ -6,51 +6,51 @@ import { Badge } from "./ui/badge";
 const explorationTools = [
   {
     id: "resultados",
-    title: "Resultados",
+    title: "Results",
     icon: CheckCircle,
     color: "bg-green-500",
     count: 1247,
-    description: "Hallazgos principales de investigaciones"
+    description: "Main findings from research studies"
   },
   {
     id: "conclusiones",
-    title: "Conclusiones",
+    title: "Conclusions",
     icon: TrendingUp,
     color: "bg-blue-500",
     count: 89,
-    description: "Análisis y síntesis de estudios"
+    description: "Analysis and synthesis of studies"
   },
   {
     id: "brechas",
-    title: "Brechas de Conocimiento",
+    title: "Knowledge Gaps",
     icon: AlertTriangle,
     color: "bg-orange-500",
     count: 156,
-    description: "Áreas que requieren más investigación"
+    description: "Areas requiring more research"
   },
   {
     id: "visualizaciones",
-    title: "Visualizaciones",
+    title: "Visualizations",
     icon: Eye,
     color: "bg-purple-500",
     count: 324,
-    description: "Gráficos, modelos y simulaciones"
+    description: "Charts, models and simulations"
   },
   {
     id: "datos",
-    title: "Datos Brutos",
+    title: "Raw Data",
     icon: Database,
     color: "bg-gray-500",
     count: 2840,
-    description: "Conjuntos de datos originales"
+    description: "Original datasets"
   }
 ];
 
 const recentActivity = [
-  { type: "resultado", title: "Efectos de radiación en células madre", time: "2h" },
-  { type: "visualización", title: "Modelo 3D de crecimiento de plantas", time: "4h" },
-  { type: "conclusión", title: "Impacto de microgravedad en huesos", time: "1d" },
-  { type: "datos", title: "Dataset: Presión arterial en astronautas", time: "2d" }
+  { type: "result", title: "Radiation effects on stem cells", time: "2h" },
+  { type: "visualization", title: "3D model of plant growth", time: "4h" },
+  { type: "conclusion", title: "Microgravity impact on bones", time: "1d" },
+  { type: "data", title: "Dataset: Blood pressure in astronauts", time: "2d" }
 ];
 
 export function RightSidebar() {
@@ -60,7 +60,7 @@ export function RightSidebar() {
     <div className="w-80 bg-[#f0f8ff] dark:bg-sidebar h-full overflow-y-auto">
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-[#0B3D91] dark:text-sidebar-foreground mb-3 tracking-wide">HERRAMIENTAS DE EXPLORACIÓN</h2>
+          <h2 className="text-[#0B3D91] dark:text-sidebar-foreground mb-3 tracking-wide">EXPLORATION TOOLS</h2>
           <div className="h-1 bg-[#FC3D21] dark:bg-accent rounded-full"></div>
         </div>
 
@@ -100,17 +100,17 @@ export function RightSidebar() {
                          style={{ backgroundColor: 'var(--secondary)' }}>
                       <div className="flex items-center space-x-2 mb-2">
                         <BarChart3 className="w-4 h-4 text-[#0B3D91] drop-shadow-sm" />
-                        <span className="text-sm text-[#0B3D91]">Vista rápida</span>
+                        <span className="text-sm text-[#0B3D91]">Quick view</span>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div className="bg-gradient-to-br from-blue-100/60 to-blue-50/40 backdrop-blur-sm rounded p-2 border border-white/30 dark:border-border/40 shadow-sm"
                              style={{ backgroundColor: 'var(--muted)' }}>
-                          <div className="text-[#0B3D91] dark:text-primary">Recientes</div>
+                          <div className="text-[#0B3D91] dark:text-primary">Recent</div>
                           <div className="text-gray-600/80 dark:text-muted-foreground">24</div>
                         </div>
                         <div className="bg-gradient-to-br from-red-100/60 to-red-50/40 backdrop-blur-sm rounded p-2 border border-white/30 dark:border-border/40 shadow-sm"
                              style={{ backgroundColor: 'var(--muted)' }}>
-                          <div className="text-[#FC3D21] dark:text-accent">Destacados</div>
+                          <div className="text-[#FC3D21] dark:text-accent">Featured</div>
                           <div className="text-gray-600/80 dark:text-muted-foreground">8</div>
                         </div>
                       </div>
@@ -124,7 +124,7 @@ export function RightSidebar() {
 
         {/* Actividad reciente */}
         <div className="space-y-4">
-          <h3 className="text-[#0B3D91] tracking-wide">ACTIVIDAD RECIENTE</h3>
+          <h3 className="text-[#0B3D91] tracking-wide">RECENT ACTIVITY</h3>
           <div className="space-y-4">
             {recentActivity.map((activity, index) => (
               <div 
@@ -156,10 +156,10 @@ export function RightSidebar() {
              style={{ backgroundColor: 'var(--muted)' }}>
           <div className="flex items-center space-x-2 mb-2 relative z-10">
             <div className="w-3 h-3 bg-[#0B3D91] dark:bg-primary rounded-full shadow-sm"></div>
-            <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground drop-shadow-sm">Centro de Control</span>
+            <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground drop-shadow-sm">Control Center</span>
           </div>
           <p className="text-xs text-gray-600/80 dark:text-muted-foreground relative z-10">
-            Monitorea el progreso de tus investigaciones y explora nuevos datos.
+            Monitor the progress of your research and explore new data.
           </p>
         </div>
       </div>

@@ -5,45 +5,45 @@ import { Card } from "./ui/card";
 const categories = [
   {
     id: "biologia",
-    title: "Biología",
+    title: "Biology",
     icon: HeartPulse,
     color: "bg-red-100",
-    description: "Efectos del espacio en el cuerpo humano"
+    description: "Effects of space on the human body"
   },
   {
     id: "plantas",
-    title: "Plantas en el Espacio",
+    title: "Plants in Space",
     icon: Leaf,
     color: "bg-green-100",
-    description: "Agricultura y botánica espacial"
+    description: "Space agriculture and botany"
   },
   {
     id: "radiacion",
-    title: "Radiación",
+    title: "Radiation",
     icon: Zap,
     color: "bg-yellow-100",
-    description: "Exposición y protección radiológica"
+    description: "Radiation exposure and protection"
   },
   {
     id: "microgravedad",
-    title: "Microgravedad",
+    title: "Microgravity",
     icon: Globe,
     color: "bg-blue-100",
-    description: "Efectos de la gravedad reducida"
+    description: "Effects of reduced gravity"
   },
   {
     id: "tecnologia",
-    title: "Tecnología",
+    title: "Technology",
     icon: Cpu,
     color: "bg-purple-100",
-    description: "Innovaciones y sistemas espaciales"
+    description: "Space innovations and systems"
   },
   {
     id: "medicina",
-    title: "Medicina",
+    title: "Medicine",
     icon: FlaskConical,
     color: "bg-orange-100",
-    description: "Investigación médica en el espacio"
+    description: "Medical research in space"
   }
 ];
 
@@ -83,7 +83,7 @@ export function LeftSidebar({ onNavigateToAdvancedSearch }) {
     <div className="w-80 bg-[#f0f8ff] dark:bg-sidebar h-full overflow-y-auto relative">
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-[#0B3D91] dark:text-sidebar-foreground mb-3 tracking-wide">CATEGORÍAS DE INVESTIGACIÓN</h2>
+          <h2 className="text-[#0B3D91] dark:text-sidebar-foreground mb-3 tracking-wide">RESEARCH CATEGORIES</h2>
           <div className="h-1 bg-[#0B3D91] dark:bg-primary rounded-full"></div>
         </div>
 
@@ -124,12 +124,12 @@ export function LeftSidebar({ onNavigateToAdvancedSearch }) {
                            style={{ backgroundColor: 'var(--secondary)' }}>
                         <div className="flex items-center space-x-2 mb-2">
                           <div className="w-3 h-3 bg-[#FC3D21] dark:bg-accent rounded-full shadow-sm"></div>
-                          <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground">Estudios</span>
+                          <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground">Studies</span>
                         </div>
                         <p className="text-xs text-gray-600/80 dark:text-muted-foreground">
                           {loading[category.id] 
-                            ? "Cargando..." 
-                            : `${categoryCounts[category.id] || 0} investigaciones disponibles`
+                            ? "Loading..." 
+                            : `${categoryCounts[category.id] || 0} research studies available`
                           }
                         </p>
                       </div>
@@ -149,10 +149,10 @@ export function LeftSidebar({ onNavigateToAdvancedSearch }) {
         >
           <div className="flex items-center space-x-2 mb-2 relative z-10">
             <div className="w-3 h-3 bg-[#FC3D21] dark:bg-accent rounded-full shadow-sm"></div>
-            <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground drop-shadow-sm font-medium">Modo Explorador</span>
+            <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground drop-shadow-sm font-medium">Explorer Mode</span>
           </div>
           <p className="text-xs text-gray-600/80 dark:text-muted-foreground relative z-10">
-            Haz clic para acceder a la búsqueda avanzada de artículos.
+            Click to access advanced article search.
           </p>
         </div>
       </div>
