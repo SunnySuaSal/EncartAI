@@ -9,6 +9,7 @@ from typing import List, Dict, Optional
 from dotenv import load_dotenv
 from openai import OpenAI
 import re
+import text2video as t2v
 
 # Load environment variables
 load_dotenv()
@@ -122,11 +123,6 @@ class LocalOpenAIProcessor:
                 audio = gTTS(text=summary, lang='en', slow=False)
                 audio.save("transcript.mp3")
 
-                processed_data.append({
-                    **item,
-                    'summary': summary,
-                    'processed': True
-                })
 
             except Exception as e:
                 print(f"Error processing {item['url']}: {str(e)}")
@@ -156,7 +152,8 @@ class LocalOpenAIProcessor:
                         "role": "user",
                         "content": (
                             "Summarize the following scientific article text in 3-4 concise sentences, "
-                            "focusing on the research goal, methods, key findings, and conclusions:\n\n"
+                            "focusing on the research goal, methods, key findings, and conclusions, "
+                            "as well as including references for further reading.\n\n"
                             f"{truncated_text}"
                         )
                     }
@@ -497,7 +494,7 @@ if __name__ == "__main__":
     print("\n" + "="*50 + "\n")
 
     # 2. Process articles about chosen topic  (max 10 articles)
-    topic = 'cheese'     # <- Here goes the search query
+    topic = 'virus'     # <- Here goes the search query
     print("=== Processing articles about " + topic + " ===")
     asyncio.run(process_articles_from_csv("pmc_articles.csv", topic))
 
