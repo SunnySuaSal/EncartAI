@@ -85,7 +85,7 @@ export function LeftSidebar({ onNavigateToAdvancedSearch, onToggle }) {
       <div className="p-6">
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-[#0B3D91] dark:text-sidebar-foreground tracking-wide">RESEARCH CATEGORIES</h2>
+            <h2 className="text-[#0B3D91] dark:text-sidebar-foreground tracking-wide">POPULAR CATEGORIES</h2>
             <Button
               variant="ghost"
               size="sm"
