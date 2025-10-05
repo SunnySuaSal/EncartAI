@@ -98,8 +98,8 @@ export function ChatInterface() {
     <div className="flex-1 flex flex-col bg-white">
 
       {/* Área de mensajes */}
-      <ScrollArea className="flex-1 p-8">
-        <div className="space-y-6 max-w-3xl mx-auto">
+      <ScrollArea className="flex-1 p-8 h-full">
+        <div className="space-y-6 max-w-3xl mx-auto pb-4">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[75%] ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
@@ -143,9 +143,9 @@ export function ChatInterface() {
           )}
 
           {messages.length === 0 && (
-            <div className="flex items-center justify-center h-full min-h-[400px]">
+            <div className="flex items-center justify-center min-h-[400px]">
               <div className="text-center">
-                <p className="text-gray-500 dark:text-muted-foreground text-lg">Escribe tu pregunta para comenzar</p>
+                <p className="text-gray-500 text-lg">Escribe tu pregunta para comenzar</p>
               </div>
             </div>
           )}
