@@ -56,7 +56,7 @@ export function MultimediaGrid({ multimedia, onAudioClick, onVideoClick, onLinkC
               </p>
 
               {/* Botones de acción */}
-              <div className="flex justify-center space-x-2">
+              <div className="flex flex-col sm:flex-row justify-center gap-2">
                 <Button
                   variant="outline"
                   size="sm"
@@ -64,7 +64,7 @@ export function MultimediaGrid({ multimedia, onAudioClick, onVideoClick, onLinkC
                     e.stopPropagation();
                     onLinkClick && onLinkClick(item.link);
                   }}
-                  className={`${
+                  className={`w-full sm:w-auto ${
                     item.type === 'audio'
                       ? 'text-blue-600 border-blue-600 hover:bg-blue-50'
                       : 'text-purple-600 border-purple-600 hover:bg-purple-50'
@@ -80,7 +80,7 @@ export function MultimediaGrid({ multimedia, onAudioClick, onVideoClick, onLinkC
                     e.stopPropagation();
                     window.open(item.link, '_blank');
                   }}
-                  className="text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10"
+                  className="w-full sm:w-auto text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10"
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Original

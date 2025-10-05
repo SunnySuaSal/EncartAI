@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { BarChart3, CheckCircle, AlertTriangle, Eye, Database, TrendingUp } from "lucide-react";
+import { BarChart3, CheckCircle, AlertTriangle, Eye, Database, TrendingUp, ChevronRight } from "lucide-react";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
 const explorationTools = [
   {
@@ -53,14 +54,25 @@ const recentActivity = [
   { type: "data", title: "Dataset: Blood pressure in astronauts", time: "2d" }
 ];
 
-export function RightSidebar() {
+export function RightSidebar({ onToggle }) {
   const [selectedTool, setSelectedTool] = useState(null);
 
   return (
     <div className="w-80 bg-[#f0f8ff] dark:bg-sidebar h-full overflow-y-auto">
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-[#0B3D91] dark:text-sidebar-foreground mb-3 tracking-wide">EXPLORATION TOOLS</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-[#0B3D91] dark:text-sidebar-foreground tracking-wide">EXPLORATION TOOLS</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggle}
+              className="text-[#0B3D91] hover:bg-[#0B3D91]/10 p-1"
+              title="Hide sidebar"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
           <div className="h-1 bg-[#FC3D21] dark:bg-accent rounded-full"></div>
         </div>
 

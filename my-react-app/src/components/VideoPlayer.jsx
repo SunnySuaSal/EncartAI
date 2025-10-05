@@ -64,12 +64,12 @@ export function VideoPlayer({ video, onDownload, onOpenOriginal }) {
             </div>
           </div>
           
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={() => onDownload && onDownload(video.link)}
-              className="text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10"
+              className="text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10 w-full sm:w-auto"
             >
               <Download className="w-4 h-4 mr-2" />
               Download
@@ -78,7 +78,7 @@ export function VideoPlayer({ video, onDownload, onOpenOriginal }) {
               variant="outline"
               size="sm"
               onClick={() => onOpenOriginal && onOpenOriginal(video.link)}
-              className="text-[#0B3D91] border-[#0B3D91] hover:bg-[#0B3D91]/10"
+              className="text-[#0B3D91] border-[#0B3D91] hover:bg-[#0B3D91]/10 w-full sm:w-auto"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Original

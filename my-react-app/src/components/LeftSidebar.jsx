@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { ChevronRight, FlaskConical, Leaf, Zap, Globe, Cpu, HeartPulse } from "lucide-react";
+import { ChevronRight, FlaskConical, Leaf, Zap, Globe, Cpu, HeartPulse, ChevronLeft } from "lucide-react";
 import { Card } from "./ui/card";
+import { Button } from "./ui/button";
 
 const categories = [
   {
@@ -47,7 +48,7 @@ const categories = [
   }
 ];
 
-export function LeftSidebar({ onNavigateToAdvancedSearch }) {
+export function LeftSidebar({ onNavigateToAdvancedSearch, onToggle }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoryCounts, setCategoryCounts] = useState({});
   const [loading, setLoading] = useState({});
@@ -83,7 +84,18 @@ export function LeftSidebar({ onNavigateToAdvancedSearch }) {
     <div className="w-80 bg-[#f0f8ff] dark:bg-sidebar h-full overflow-y-auto relative">
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-[#0B3D91] dark:text-sidebar-foreground mb-3 tracking-wide">RESEARCH CATEGORIES</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-[#0B3D91] dark:text-sidebar-foreground tracking-wide">RESEARCH CATEGORIES</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggle}
+              className="text-[#0B3D91] hover:bg-[#0B3D91]/10 p-1"
+              title="Hide sidebar"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+          </div>
           <div className="h-1 bg-[#0B3D91] dark:bg-primary rounded-full"></div>
         </div>
 

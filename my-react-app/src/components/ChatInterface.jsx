@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, PanelLeft, PanelRight } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { ArticlesList } from "./ArticlesList";
@@ -10,7 +10,12 @@ import { VideoPlayer } from "./VideoPlayer";
 import { MultimediaGrid } from "./MultimediaGrid";
 import sampleArticles from "../assets/sampleListArticles.json";
 
-export function ChatInterface() {
+export function ChatInterface({ 
+  leftSidebarVisible, 
+  rightSidebarVisible, 
+  onToggleLeftSidebar, 
+  onToggleRightSidebar 
+}) {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -136,6 +141,36 @@ export function ChatInterface() {
 
   return (
     <div className="flex-1 flex flex-col bg-white overflow-hidden">
+      {/* Botones de toggle para sidebars */}
+      <div className="flex justify-between items-center p-2 bg-gray-50 border-b border-gray-200">
+        <div className="flex-1">
+          {!leftSidebarVisible && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggleLeftSidebar}
+              className="text-[#0B3D91] hover:bg-[#0B3D91]/10"
+              title="Show left sidebar"
+            >
+              <PanelLeft className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
+        
+        <div className="flex-1 flex justify-end">
+          {!rightSidebarVisible && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggleRightSidebar}
+              className="text-[#0B3D91] hover:bg-[#0B3D91]/10"
+              title="Show right sidebar"
+            >
+              <PanelRight className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
+      </div>
 
       {/* Área de mensajes */}
       <div className="flex-1 overflow-y-auto p-8">

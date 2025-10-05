@@ -7,6 +7,8 @@ import { AdvancedSearchToolbar } from "./components/AdvancedSearchToolbar";
 
 export default function App() {
   const [currentView, setCurrentView] = useState('chat'); // 'chat' or 'advanced-search'
+  const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
+  const [rightSidebarVisible, setRightSidebarVisible] = useState(true);
 
   const handleNavigateToAdvancedSearch = () => {
     setCurrentView('advanced-search');
@@ -14,6 +16,14 @@ export default function App() {
 
   const handleNavigateToChat = () => {
     setCurrentView('chat');
+  };
+
+  const toggleLeftSidebar = () => {
+    setLeftSidebarVisible(!leftSidebarVisible);
+  };
+
+  const toggleRightSidebar = () => {
+    setRightSidebarVisible(!rightSidebarVisible);
   };
 
   return (
@@ -24,11 +34,23 @@ export default function App() {
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Sidebar */}
-        <LeftSidebar onNavigateToAdvancedSearch={handleNavigateToAdvancedSearch} />
+        {leftSidebarVisible && (
+          <LeftSidebar 
+            onNavigateToAdvancedSearch={handleNavigateToAdvancedSearch}
+            onToggle={toggleLeftSidebar}
+          />
+        )}
         
         {/* Central Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {currentView === 'chat' && <ChatInterface />}
+          {currentView === 'chat' && (
+            <ChatInterface 
+              leftSidebarVisible={leftSidebarVisible}
+              rightSidebarVisible={rightSidebarVisible}
+              onToggleLeftSidebar={toggleLeftSidebar}
+              onToggleRightSidebar={toggleRightSidebar}
+            />
+          )}
           {currentView === 'advanced-search' && (
             <div className="flex-1 overflow-auto">
               <AdvancedSearchToolbar onNavigateBack={handleNavigateToChat} />
@@ -37,7 +59,9 @@ export default function App() {
         </div>
         
         {/* Right Sidebar */}
-        <RightSidebar />
+        {rightSidebarVisible && (
+          <RightSidebar onToggle={toggleRightSidebar} />
+        )}
       </div>
 
       {/* Footer decorativo retro */}
