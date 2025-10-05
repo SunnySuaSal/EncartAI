@@ -95,17 +95,9 @@ export function LeftSidebar() {
                            style={{ backgroundColor: 'var(--secondary)' }}>
                         <div className="flex items-center space-x-2 mb-2">
                           <div className="w-3 h-3 bg-[#FC3D21] dark:bg-accent rounded-full shadow-sm"></div>
-                          <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground">Estudios recientes</span>
+                          <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground">Estudios</span>
                         </div>
                         <p className="text-xs text-gray-600/80 dark:text-muted-foreground">42 investigaciones disponibles</p>
-                      </div>
-                      <div className="bg-gradient-to-br from-white/90 to-blue-50/40 backdrop-blur-sm rounded-xl p-3 border border-white/40 dark:border-border/50 shadow-[0_4px_16px_-4px_rgba(11,61,145,0.1),_0_2px_4px_-1px_rgba(255,255,255,0.6)_inset] dark:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.4),_0_2px_4px_-1px_rgba(0,0,0,0.2)_inset]"
-                           style={{ backgroundColor: 'var(--secondary)' }}>
-                        <div className="flex items-center space-x-2 mb-2">
-                          <div className="w-3 h-3 bg-[#0B3D91] dark:bg-primary rounded-full shadow-sm"></div>
-                          <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground">Misiones relacionadas</span>
-                        </div>
-                        <p className="text-xs text-gray-600/80 dark:text-muted-foreground">ISS, Artemis, Mars 2020</p>
                       </div>
                     </div>
                   </div>
