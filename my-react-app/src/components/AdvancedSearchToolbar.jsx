@@ -8,8 +8,8 @@ import { Badge } from "./ui/badge";
 const categories = [
   {
     id: "biologia",
-    title: "Human Biology",
-    description: "Effects of space on the human body"
+    title: "Biology",
+    description: "Effects of space living"
   },
   {
     id: "plantas",
@@ -150,7 +150,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
               className="flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              Filters
+              Categories
               {showFilters ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </Button>
           </div>
@@ -171,7 +171,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
             {/* Advanced Filters */}
             {showFilters && (
               <div className="space-y-4 p-4 bg-gray-50/50 rounded-xl border border-gray-200">
-                <h3 className="font-semibold text-[#0B3D91]">Advanced Filters</h3>
+                <h3 className="font-semibold text-[#0B3D91]">Popular Categories</h3>
                 
                 {/* Categories Selection */}
                 <div>
@@ -191,9 +191,9 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                             : 'hover:bg-gray-100'
                         }`}
                       >
-                        <div>
+                        <div className="w-full">
                           <div className="font-medium">{category.title}</div>
-                          <div className="text-xs opacity-75">{category.description}</div>
+                          <div className="text-xs opacity-75 overflow-hidden text-ellipsis whitespace-nowrap">{category.description}</div>
                         </div>
                       </Button>
                     ))}
