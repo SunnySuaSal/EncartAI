@@ -17,7 +17,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen bg-[#e6f3ff] flex flex-col font-sans">
+    <div className="h-screen bg-[#e6f3ff] flex flex-col font-sans overflow-hidden">
       {/* Header */}
       <Header />
       
@@ -27,7 +27,7 @@ export default function App() {
         <LeftSidebar onNavigateToAdvancedSearch={handleNavigateToAdvancedSearch} />
         
         {/* Central Content */}
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col overflow-hidden">
           {currentView === 'chat' && <ChatInterface />}
           {currentView === 'advanced-search' && (
             <div className="flex-1 overflow-auto">
@@ -41,7 +41,7 @@ export default function App() {
       </div>
 
       {/* Footer decorativo retro */}
-      <footer className="h-2 bg-[#0B3D91]"></footer>
+      <footer className="h-2 bg-[#0B3D91] flex-shrink-0"></footer>
     </div>
   );
 }

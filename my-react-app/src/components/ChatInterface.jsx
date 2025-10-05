@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Send } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { ScrollArea } from "./ui/scroll-area";
 import { ArticlesList } from "./ArticlesList";
 import { ArticleReader } from "./ArticleReader";
 import { FileViewer } from "./FileViewer";
@@ -136,10 +135,10 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white">
+    <div className="flex-1 flex flex-col bg-white overflow-hidden">
 
       {/* Área de mensajes */}
-      <ScrollArea className="flex-1 p-8 h-full">
+      <div className="flex-1 overflow-y-auto p-8">
         <div className="space-y-6 max-w-3xl mx-auto pb-4">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -201,7 +200,7 @@ export function ChatInterface() {
                 </div>
               )}
         </div>
-      </ScrollArea>
+      </div>
 
       {/* Input de mensaje */}
       <div className="p-8 bg-white border-t border-gray-200">
