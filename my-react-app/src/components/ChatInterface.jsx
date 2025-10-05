@@ -56,17 +56,19 @@ export function ChatInterface({
   };
 
   const generateBotResponse = (userMessage) => {
+    const lowerMessage = userMessage.toLowerCase();
+    
     // Detectar si la pregunta es sobre artículos o investigación
-    const isArticleQuery = userMessage.toLowerCase().includes('artículo') || 
-                         userMessage.toLowerCase().includes('investigación') ||
-                         userMessage.toLowerCase().includes('estudio') ||
-                         userMessage.toLowerCase().includes('investigar') ||
-                         userMessage.toLowerCase().includes('article') ||
-                         userMessage.toLowerCase().includes('research') ||
-                         userMessage.toLowerCase().includes('study') ||
-                         userMessage.toLowerCase().includes('investigate') ||
-                         userMessage.toLowerCase().includes('document') ||
-                         userMessage.toLowerCase().includes('documento');
+    const isArticleQuery = lowerMessage.includes('artículo') || 
+                         lowerMessage.includes('investigación') ||
+                         lowerMessage.includes('estudio') ||
+                         lowerMessage.includes('investigar') ||
+                         lowerMessage.includes('article') ||
+                         lowerMessage.includes('research') ||
+                         lowerMessage.includes('study') ||
+                         lowerMessage.includes('investigate') ||
+                         lowerMessage.includes('document') ||
+                         lowerMessage.includes('documento');
 
     if (isArticleQuery) {
       return {
@@ -76,11 +78,71 @@ export function ChatInterface({
       };
     }
 
+    // Respuestas específicas para diferentes temas
+    if (lowerMessage.includes('microgravity') || lowerMessage.includes('gravity')) {
+      return {
+        content: "Microgravity is one of the most fascinating aspects of space research! In the absence of Earth's gravity, biological systems behave completely differently. NASA studies show that microgravity affects everything from bone density to fluid distribution in the body. Astronauts experience muscle atrophy, bone loss, and changes in cardiovascular function. These effects are crucial to understand for long-duration missions to Mars.",
+        pdfs: null,
+        multimedia: null
+      };
+    }
+
+    if (lowerMessage.includes('radiation') || lowerMessage.includes('space radiation')) {
+      return {
+        content: "Space radiation is a major concern for human spaceflight! Beyond Earth's protective atmosphere, astronauts are exposed to cosmic rays and solar particle events. NASA research focuses on understanding radiation effects on DNA, cellular function, and long-term health. Current studies are developing better shielding materials and monitoring systems to protect future Mars explorers.",
+        pdfs: null,
+        multimedia: null
+      };
+    }
+
+    if (lowerMessage.includes('plants') || lowerMessage.includes('agriculture') || lowerMessage.includes('food')) {
+      return {
+        content: "Space agriculture is essential for future long-duration missions! NASA's Veggie experiments on the ISS have successfully grown lettuce, radishes, and other crops in microgravity. Plants in space grow differently - their roots don't follow gravity, and they require special lighting systems. This research is crucial for developing sustainable food production systems for Mars colonies.",
+        pdfs: null,
+        multimedia: null
+      };
+    }
+
+    if (lowerMessage.includes('mars') || lowerMessage.includes('mission')) {
+      return {
+        content: "Mars missions represent the next frontier in human space exploration! NASA's Artemis program is preparing for lunar missions that will serve as stepping stones to Mars. The challenges include radiation exposure, microgravity effects, psychological isolation, and life support systems. Current research focuses on developing technologies for sustainable Mars habitation and return missions.",
+        pdfs: null,
+        multimedia: null
+      };
+    }
+
+    if (lowerMessage.includes('health') || lowerMessage.includes('medical') || lowerMessage.includes('medicine')) {
+      return {
+        content: "Space medicine is a rapidly evolving field! NASA researchers study how spaceflight affects human health, from immediate effects like space motion sickness to long-term concerns like vision changes and bone loss. The research has led to medical advances on Earth, including improved osteoporosis treatments and better understanding of balance disorders.",
+        pdfs: null,
+        multimedia: null
+      };
+    }
+
     const responses = [
-      "Excellent question about space research. According to NASA data, this topic involves multiple factors that we must consider...",
-      "Studies conducted on the International Space Station show fascinating results on this topic. I can explain more details...",
-      "Space research in this area has revealed surprising data. Astronauts have observed unique effects that cannot be replicated on Earth...",
-      "This is a very active field of research at NASA. Recent studies suggest new directions for future missions..."
+      "Excellent question about space research. According to NASA data, this topic involves multiple factors that we must consider. The microgravity environment creates unique conditions that affect biological systems in ways we're still discovering.",
+      
+      "Studies conducted on the International Space Station show fascinating results on this topic. I can explain more details about how space conditions impact human physiology and biological processes.",
+      
+      "Space research in this area has revealed surprising data. Astronauts have observed unique effects that cannot be replicated on Earth, providing valuable insights for both space exploration and medical research.",
+      
+      "This is a very active field of research at NASA. Recent studies suggest new directions for future missions, particularly in understanding how long-duration spaceflight affects human health.",
+      
+      "That's a fascinating aspect of space biology! NASA's research has shown that exposure to space radiation and microgravity can have profound effects on cellular function and gene expression.",
+      
+      "Great question! The International Space Station serves as our primary laboratory for studying biological processes in space. Recent experiments have revealed how plants and microorganisms adapt to space conditions.",
+      
+      "NASA's bioastronautics research is crucial for future Mars missions. Understanding how the human body responds to space conditions is essential for mission planning and astronaut safety.",
+      
+      "Interesting topic! Space medicine research has led to breakthroughs in understanding bone density loss, muscle atrophy, and cardiovascular changes that occur in microgravity environments.",
+      
+      "The effects of space on biological systems are complex and multifaceted. NASA's research covers everything from cellular biology to whole-body physiology, providing insights for both space exploration and Earth-based medicine.",
+      
+      "That's an important area of study! NASA researchers are investigating how space conditions affect everything from DNA repair mechanisms to immune system function, with implications for long-term space habitation.",
+      
+      "Space biology research has revealed that organisms adapt to microgravity in surprising ways. These adaptations could have applications for biotechnology and medical research on Earth.",
+      
+      "Excellent question! NASA's research in this field combines cutting-edge technology with fundamental biology to understand how life responds to the unique challenges of space exploration."
     ];
     return {
       content: responses[Math.floor(Math.random() * responses.length)],
