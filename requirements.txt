@@ -1,3 +1,5 @@
+playwright
+pandas
 fastapi
 uvicorn[standard]
 sqlalchemy
@@ -5,3 +7,5 @@ psycopg2-binary
 alembic
 python-dotenv
 pydantic
+dotenv
+huggingface_hub

@@ -3,6 +3,7 @@ from playwright.async_api import async_playwright
 import pandas as pd
 import json
 import time
+from gtts import gTTS
 import os
 from typing import List, Dict, Optional
 from dotenv import load_dotenv
@@ -116,7 +117,8 @@ class HuggingFaceDataProcessor:
                 await asyncio.sleep(2)
 
                 summary = await self._summarize_with_chat_model(item['text'])
-
+                audio = gTTS(text=summary, lang='en', slow=False)
+                audio.save("transcript.mp3")
                 processed_data.append({
                     **item,
                     'summary': summary,
@@ -344,8 +346,8 @@ async def scrape_articles(article_list: List[Dict], batch_size: int = 3) -> List
 
             # Rate limiting between batches
             if i + batch_size < len(article_list):
-                print("Waiting 3 seconds before next batch...")
-                await asyncio.sleep(3)
+                print("Waiting 1 second before next batch...")
+                await asyncio.sleep(1)
 
     except Exception as e:
         print(f"Error during scraping: {e}")
@@ -407,12 +409,7 @@ async def process_articles_from_csv(csv_path: str, topic: Optional[str] = None, 
         print(f"Successfully processed with AI: {len(processed)}")
         print(f"Results saved to: {output_file}")
 
-        # Display sample results
-        print(f"\n--- Sample Results ---")
-        for i, item in enumerate(processed[:3]):  # Show first 3 processed articles
-            if i < len(processed):
-                print(f"\n{i+1}. {item.get('Title', 'Unknown')}")
-                print(f"Summary: {item.get('summary', 'No summary')[:200]}...")
+
 
     except Exception as e:
         print(f"Error in processing: {str(e)}")
@@ -476,7 +473,7 @@ if __name__ == "__main__":
     print("\n" + "="*50 + "\n")
 
     # 2. Process articles about chosen topic  (max 10 articles)
-    topic = 'something'     # <- Here goes the search query
+    topic = 'cheese'     # <- Here goes the search query
     print("=== Processing articles about " + topic + " ===")
     asyncio.run(process_articles_from_csv("pmc_articles.csv", topic))
 

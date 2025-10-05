@@ -1,0 +1,109 @@
+Title,url,summary,success,processed,error
+COVID-19 Vaccine Efficacy Study,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11386075/,"food, supplies, and equipment [5, 6]. Moisture is a major factor in microbial growth on Earth [7, 8, 9], and we hypothesized that it will be a major factor in space [10]. We sought to understand how relative humidity affects spacecraft microbiomes.
+
+Results
+
+We collected dust from the ISS and exposed it to 30% and 85% relative humidity for 2 weeks, and found that fungi grew significantly more at 85% relative humidity (Fig. 1a, b). Fungal concentrations increased 4.6 ± × 101 fold (Fig. 2a, b). Fungal communities shifted from Aspergillus versicolor to Penicillium (Fig. 3a, b) and decreased in alpha (Fig. 4a, b) and beta (Fig. 5a, b) diversity (Fig. 6a, b) (Q < 0.05, R2 = 0.307, P = 0.001). Bacteria did not grow (Fig. 1c, d) but shifted in composition (Fig. 2c, d) at 85% relative humidity (Fig. 5c, d) with R2 = 0.22, P = 0.001.
+
+Conclusions
+
+Our results",True,True,
+Cancer Immunotherapy Research,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5498037/,"space environment. The cardiac effects of spaceflight have been investigated in rodents [10–12], but not with combined exposure to ionizing radiation and microgravity.
+
+Conclusion
+
+This study has provided the first analysis of the cardiac effects of combined low-dose rate γ-irradiation and simulated microgravity. The results suggest that the cardiac effects of low-dose rate γ-irradiation and simulated microgravity are not additive.
+
+Methods
+
+Female C57BL/6J mice were exposed to 0.01 cGy/h for 21 days, with or without hindlimb unloading (HU) or sham irradiation (control). After 7 days, 1 month, or 4 months, or 9 months. Cardiac tissue was collected for biochemical and histological analysis.
+
+Results
+
+The combination of HU and γ-irradiation demonstrated a significant increase in the ratio of reduced to oxidized glutathione, but not in 4-hydroxynonenal adducts, manganese superoxide dismutase, CD-2, or α-smooth muscle cell actin. Collagen III protein content was not significantly altered by any treatment.
+
+Conclusion
+
+This study has shown that the simultaneous exposure to low-dose rate γ-irradiation and HU did not exacerbate the effects of HU on the heart.
+
+Methods
+
+Female C57BL/6J mice",True,True,
+Diabetes Treatment with Metformin,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11223344/,"2015 would be sustained.
+
+Methods
+
+The cost-effectiveness of Health TAPESTRY was evaluated using data from the McMaster FHT site. Costs included the cost to implement Health TAPESTRY and healthcare resources consumed. Health-related quality-of-life was evaluated using the EQ-5L-5L at baseline and at 6-month follow-up. Costs were calculated using publicly available sources. QALYs were calculated using the area-under the curve approach. Bootstrapping was used to estimate sampling uncertainty. The incremental cost-effectiveness ratio (ICER) was calculated. The return on investment (ROI) was calculated. All costs were in 2021 Canadian dollars.
+
+Results
+
+Health TAPESTRY was cost-effective compared to usual care at commonly accepted WTP thresholds ($50,000/QALY gained. The probability that Health TAPESTRY was cost-effective compared to usual care was 0.72 (unadjusted) to 0.96 (SUR) at a WTP of $50,000/QALY gained. The difference-in-differences (DID) and propensity score matching (PSM) methods were used to account for the non-randomized nature of the trial.
+
+Conclusion
+
+Health TAPESTRY was cost-effective at the McMaster FHT site. However, the results should be interpreted with caution because of the post-hoc nature of the study and limited sample size.
+
+[Instructions: Summar",True,True,
+COVID-19 Long-term Effects,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11445567/,"static connectivity matrix, frame-wise methods have the advantage of being computationally less demanding and more amenable to high-dimensional data16,17,18. Here, Gutierrez-Barragan et al. Use frame-wise clustering to identify a set of recurrent fMRI coactivation modes (C-modes) in humans, macaques and mice, which are recurrently visited during rest. The authors find that C-modes are conserved across species and their dynamics are compatible with infraslow oscillator dynamics.
+
+Results
+
+The authors present a frame-wise clustering algorithm to identify C-modes in fMRI time-series from humans, macaques and mice. They find that C-modes are recurrently visited during rest, and their dynamics are compatible with infraslow oscillator dynamics. They also find that C-mode occurrence predicts fMRI connectivity gradients in all species.
+
+Discussion
+
+The authors suggest that their findings offer a framework to relate fMRI network dynamics across mammalian species.
+
+References
+
+1. Fox, G. And Rahi, Nat Neurosci 13, 15 (2016) 2. Beckmann, C. F. Et al., Proc Natl Acad Sci U S A 104, 183 (2005) 3. Smith, S. M. Et al., Proc Natl Acad Sci U S A 101, 108 (2009)",True,True,
+Cancer Genomics and Personalized Medicine,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5532123/,"had hernias through subcostal incision, 3 through gridiron incision, 1 through pfannensteil incision and 1 through lumbar incision. Hernias were repaired by anatomical repair in 10 and prosthetic repair in 5 patients.
+
+Results
+
+10 patients had hernias through subcostal incision. 3 patients had hernias through gridiron incision. One patient had a giant incisional hernia through rooftop incision. All patients were followed up for a median period of 18 months. All patients had symptomatic hernias. 13 patients had small defects and 2 had large defects. 12 patients had obstructive symptoms. 10 patients had intestinal contents and 3 had small bowel loops. 10 patients had obstructive symptoms. 12 patients had incarceration. 10 patients had incisional hernia through subcostal incision, 3 through gridiron incision and 2 through lumbar incision. 10 patients had reducible hernias. 5 patients had incarcerated hernias. 10 patients had incisional hernias through subcostal incision, 3 through gridiron incision and 1 through lumbar incision. 10 patients had hernias through subcostal incision, 3 through gridiron incision and 1 through lumbar incision. 10 patients had incarcerated hernias. 10 patients had hernias through subcostal incision,",True,True,
+Mental Health During COVID-19 Pandemic,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11556678/,"2. Results
+
+In sNF, semantic information about the current mental state is provided to the participant, as a point in a two-dimensional map representing the similarity of the current mental state to a set of pre-measured mental states (e.g. ‘happy’, ‘content’, ‘sad’, ‘angry’). The semantic information is extracted from the current brain state using RSA [1]. This semantic information is a multivariate pattern analysis (MVPA) of the current brain state and a set of emotional mental states [6]. The map is displayed as a point in a two-dimensional map, and the participant learns to move the point to a target area (e.g. ‘happy’).
+
+3. Discussion
+
+We discuss the potential of sNF in the context of mood disorders. The semantic information is expected to be more specific than conventional fMRI NF, as it provides the participant with a goal for self-regulation. The semantic information is expected to improve the specificity of self-regulation, as it provides a goal for self-regulation. In contrast to conventional fMRI NF, the participant learns to move the point towards a specific mental state, instead of merely increasing activity.
+
+4. Conclusion
+
+Semantic fMRI neurofeedback (sNF) provides semantic information about the current mental state to the participant, while conventional fMRI NF provides information about the strength of activity. sNF is expected to improve the specificity of self-regulation training in mood disorders, as it provides a goal for self-regulation",True,True,
+Advances in Cancer Detection Methods,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5543211/,"this study, we describe the co-option of a motor-to-sensory circuit in the context of the antennal lobe, the first olfactory neuropil.
+
+Moths and butterflies (Lepidoptera) are holometabolous insects that evolved flight independently [11]. They share a common ancestor, yet moths have a unique flight pattern that involves wing beats during olfaction [12]. The wings of moths beat during flight and while walking [13], whereas butterflies do not. This wing-beat during olfaction is a form of flight-induced airflow around the antennae, altering odour plumes, which could influence olfactory processing. We hypothesized that a circuit that evolved in the context of wing-beats could be co-opted to provide the antennal lobe (AL) with a corollary discharge, which is the sensory prediction of motor output.
+
+We investigated the co-option of a motor-to-sensory circuit in the context of the antennal lobe. In Drosophila, the mesothoracic neurons that innervate the thoracic segments (MDHns) project to the antennal lobes (ALs) [14]. In moths, but not butterflies, the MDHns innervate the ALs.
+
+2. Results
+
+To investigate the co-option of a motor-to-sensory circuit, we compared the MDHns in moths and butterflies. We found that the MDHns in moth",True,True,
+Diabetes Prevention Strategies,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11223345/,"Second admission
+
+The patient presented with fever and lower extremity pain on March 2022nd, 2021. Blood cultures grew Enterococcus faecium and Salmonella typhimurium. Empiric meropenem and vancomycin were administered. Empiric ampicillin and gentamicin were administered after the second culture grew E. Faecium.
+
+Fig. 4.
+
+Open in a new tab
+
+The left image shows the second CTA. The right image depicts the fistula (arrow) between the aorta and duodenum (arrowhead)
+
+Open in a new tab
+
+The patient underwent in situ aortic repairment on March 26th, 2021. The right image shows the fistula (arrow) between the aorta and duodenum (arrowhead)
+
+Open in a new tab
+
+The left image shows the fistula (arrow) on the second follow-up CT (July 2021). The right image shows the fistula (arrow) on the third follow-up CT (July 2021)
+
+Open in a new tab
+
+The left image shows the fistula (arrow) on the fourth follow-up CT (September 21). The right image shows the fistula (arrow) on the fifth follow-up CT (December 21)
+
+Discussion
+
+The patient developed sepsis due to Enterococcus faecium and Salmonella typhimurium. The second CTA",True,True,
