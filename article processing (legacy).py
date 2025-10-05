@@ -1,3 +1,6 @@
+# Code that used the HuggingFace API to process the text. Switched over to OpenAI due to a lack of tokens
+
+
 import asyncio
 from playwright.async_api import async_playwright
 import pandas as pd
