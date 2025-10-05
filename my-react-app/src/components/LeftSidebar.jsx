@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronRight, FlaskConical, Leaf, Zap, Globe, Cpu, HeartPulse } from "lucide-react";
 import { Card } from "./ui/card";
 
 const categories = [
   {
     id: "biologia",
-    title: "Biología Humana",
+    title: "Biología",
     icon: HeartPulse,
     color: "bg-red-100",
     description: "Efectos del espacio en el cuerpo humano"
@@ -40,7 +40,7 @@ const categories = [
   },
   {
     id: "medicina",
-    title: "Medicina Espacial",
+    title: "Medicina",
     icon: FlaskConical,
     color: "bg-orange-100",
     description: "Investigación médica en el espacio"
@@ -49,6 +49,35 @@ const categories = [
 
 export function LeftSidebar() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categoryCounts, setCategoryCounts] = useState({});
+  const [loading, setLoading] = useState({});
+
+  const fetchCategoryCount = async (categoryId) => {
+    try {
+      setLoading(prev => ({ ...prev, [categoryId]: true }));
+      const response = await fetch(`http://127.0.0.1:8000/categories/${categoryId}/count`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      setCategoryCounts(prev => ({ ...prev, [categoryId]: data.count }));
+    } catch (error) {
+      console.error(`Error fetching count for category ${categoryId}:`, error);
+      // Set a default count of 0 on error
+      setCategoryCounts(prev => ({ ...prev, [categoryId]: 0 }));
+    } finally {
+      setLoading(prev => ({ ...prev, [categoryId]: false }));
+    }
+  };
+
+  useEffect(() => {
+    // Fetch counts for all categories when component mounts
+    categories.forEach(category => {
+      fetchCategoryCount(category.id);
+    });
+  }, []);
 
   return (
     <div className="w-80 bg-[#f0f8ff] dark:bg-sidebar h-full overflow-y-auto relative">
@@ -97,7 +126,12 @@ export function LeftSidebar() {
                           <div className="w-3 h-3 bg-[#FC3D21] dark:bg-accent rounded-full shadow-sm"></div>
                           <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground">Estudios</span>
                         </div>
-                        <p className="text-xs text-gray-600/80 dark:text-muted-foreground">42 investigaciones disponibles</p>
+                        <p className="text-xs text-gray-600/80 dark:text-muted-foreground">
+                          {loading[category.id] 
+                            ? "Cargando..." 
+                            : `${categoryCounts[category.id] || 0} investigaciones disponibles`
+                          }
+                        </p>
                       </div>
                     </div>
                   </div>
