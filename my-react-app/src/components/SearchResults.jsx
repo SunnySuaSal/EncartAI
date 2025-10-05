@@ -4,7 +4,7 @@ export function SearchResults({ results }) {
   if (!results || results.length === 0) {
     return null;
   }
-
+  
   return (
     <div className="py-2">
       <div className="px-4 py-2 text-sm font-semibold text-gray-700 border-b border-gray-200">
@@ -21,11 +21,6 @@ export function SearchResults({ results }) {
                 <h3 className="text-sm font-medium text-gray-900 leading-5 line-clamp-2">
                   {item.title}
                 </h3>
-                <div className="mt-1 flex items-center text-xs text-gray-500">
-                  <span className="inline-flex items-center px-2 py-1 rounded-full bg-blue-100 text-blue-800">
-                    ID: {item.id}
-                  </span>
-                </div>
               </div>
               {item.link && (
                 <a
