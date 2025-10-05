@@ -43,3 +43,18 @@ class AbstractSearchResult(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ArticleSearchResult(BaseModel):
+    id: int
+    title: str
+    link: str
+
+    class Config:
+        from_attributes = True
+
+class CategoryCount(BaseModel):
+    category_id: str
+    count: int
+
+    class Config:
+        from_attributes = True

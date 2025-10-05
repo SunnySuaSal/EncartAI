@@ -1,0 +1,32 @@
+[
+    {
+        "id": "biologia",
+        "title": "Biología Humana",
+        "description": "Efectos del espacio en el cuerpo humano"
+    },
+    {
+        "id": "plantas",
+        "title": "Plantas en el Espacio",
+        "description": "Agricultura y botánica espacial"
+    },
+    {
+        "id": "radiacion",
+        "title": "Radiación",
+        "description": "Exposición y protección radiológica"
+    },
+    {
+        "id": "microgravedad",
+        "title": "Microgravedad",
+        "description": "Efectos de la gravedad reducida"
+    },
+    {
+        "id": "tecnologia",
+        "title": "Tecnología",
+        "description": "Innovaciones y sistemas espaciales"
+    },
+    {
+        "id": "medicina",
+        "title": "Medicina",
+        "description": "Investigación médica en el espacio"
+    }
+]

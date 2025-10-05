@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
-from models import Article, Abstract
+from sqlalchemy import or_, and_
+from models import Article, Abstract, Category, ArticleCategory
 from schemas import ArticleCreate, ArticleUpdate, AbstractCreate, AbstractUpdate
 
 def get_article(db: Session, article_id: int):
@@ -79,3 +79,61 @@ def delete_abstract(db: Session, article_id: int):
         db.delete(db_abstract)
         db.commit()
     return db_abstract
+
+def search_articles_by_query_and_categories(db: Session, query: str = None, categories: list = None, skip: int = 0, limit: int = 100):
+    """
+    Search articles by query in title field and filter by categories.
+    Returns only article.id, article.title, and article.link.
+    
+    Args:
+        db: Database session
+        query: Search query for article title (optional)
+        categories: List of category IDs to filter by (optional)
+        skip: Number of articles to skip
+        limit: Maximum number of articles to return
+    
+    Returns:
+        List of tuples containing (id, title, link)
+    """
+    # Start with base query selecting only the required fields
+    base_query = db.query(Article.id, Article.title, Article.link)
+    
+    # Apply filters
+    filters = []
+    
+    # Add query filter if provided
+    if query and query.strip():
+        filters.append(Article.title.ilike(f"%{query.strip()}%"))
+    
+    # Add category filter if provided
+    if categories and len(categories) > 0:
+        # Filter out empty strings and None values
+        valid_categories = [cat for cat in categories if cat and cat.strip()]
+        if valid_categories:
+            # Join with ArticleCategory table to filter by categories
+            base_query = base_query.join(ArticleCategory, Article.id == ArticleCategory.id_article)
+            filters.append(ArticleCategory.category.in_(valid_categories))
+    
+    # Apply all filters
+    if filters:
+        base_query = base_query.filter(and_(*filters))
+    
+    # Apply pagination and return results
+    return base_query.offset(skip).limit(limit).all()
+
+def count_articles_by_category(db: Session, category_id: str):
+    """
+    Count the number of articles in a specific category.
+    
+    Args:
+        db: Database session
+        category_id: The category ID to count articles for
+    
+    Returns:
+        Integer count of articles in the category
+    """
+    if not category_id or not category_id.strip():
+        return 0
+    
+    count = db.query(ArticleCategory).filter(ArticleCategory.category == category_id.strip()).count()
+    return count

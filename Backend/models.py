@@ -19,3 +19,20 @@ class Abstract(Base):
 
 # Add the reverse relationship
 Article.abstracts = relationship("Abstract", back_populates="article")
+
+class Category(Base):
+    __tablename__ = "categories"
+
+    id = Column(String, primary_key=True, index=True)
+    title = Column(String, nullable=False)
+    description = Column(String)
+
+class ArticleCategory(Base):
+    __tablename__ = "article_categories"
+
+    id_article = Column(Integer, ForeignKey("articles.id"), primary_key=True, nullable=False, index=True)
+    category = Column(String, ForeignKey("categories.id"), primary_key=True, nullable=False, index=True)
+    
+    # Relationships
+    article = relationship("Article")
+    category_ref = relationship("Category")

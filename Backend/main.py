@@ -3,11 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from database import get_db, engine
 from models import Base
-from schemas import Article, ArticleCreate, ArticleUpdate, Abstract, AbstractCreate, AbstractUpdate, ArticleWithAbstracts, AbstractSearchResult
+from schemas import Article, ArticleCreate, ArticleUpdate, Abstract, AbstractCreate, AbstractUpdate, ArticleWithAbstracts, AbstractSearchResult, ArticleSearchResult, CategoryCount
 from crud import (
     get_article, get_articles, create_article, update_article, delete_article, search_articles,
     get_abstract, get_abstracts, create_abstract, update_abstract, delete_abstract, search_abstracts,
-    get_abstracts_by_article
+    get_abstracts_by_article, search_articles_by_query_and_categories, count_articles_by_category
 )
 
 # Create database tables
@@ -142,3 +142,66 @@ async def get_article_abstracts(article_id: int, db: Session = Depends(get_db)):
     """Get all abstracts for a specific article."""
     abstracts = get_abstracts_by_article(db, article_id=article_id)
     return abstracts
+
+@app.get("/articles/search/advanced/", response_model=list[ArticleSearchResult])
+async def search_articles_advanced(
+    q: str = None, 
+    categories: str = None,
+    skip: int = 0, 
+    limit: int = 100, 
+    db: Session = Depends(get_db)
+):
+    """
+    Advanced search for articles by query and categories.
+    Returns only article.id, article.title, and article.link.
+    
+    - **q**: Search query for article title (optional)
+    - **categories**: Comma-separated list of category IDs to filter by (optional)
+    - **skip**: Number of articles to skip (default: 0)
+    - **limit**: Maximum number of articles to return (default: 100)
+    
+    Example categories: "biologia,microgravedad,tecnologia"
+    """
+    # Parse categories if provided
+    category_list = None
+    if categories and categories.strip():
+        category_list = [cat.strip() for cat in categories.split(',') if cat.strip()]
+    
+    # Search articles using the new CRUD function
+    results = search_articles_by_query_and_categories(
+        db=db, 
+        query=q, 
+        categories=category_list, 
+        skip=skip, 
+        limit=limit
+    )
+    
+    # Convert tuple results to dictionary format for the schema
+    search_results = []
+    for result in results:
+        search_results.append({
+            "id": result[0],  # Article.id
+            "title": result[1],  # Article.title
+            "link": result[2]   # Article.link
+        })
+    
+    return search_results
+
+@app.get("/categories/{category_id}/count", response_model=CategoryCount)
+async def get_category_article_count(category_id: str, db: Session = Depends(get_db)):
+    """
+    Get the number of articles in a specific category.
+    
+    - **category_id**: The category ID to count articles for (e.g., "biologia", "microgravedad", "tecnologia")
+    
+    Returns the category ID and the count of articles in that category.
+    """
+    if not category_id or not category_id.strip():
+        raise HTTPException(status_code=400, detail="Category ID cannot be empty")
+    
+    count = count_articles_by_category(db, category_id)
+    
+    return {
+        "category_id": category_id,
+        "count": count
+    }
