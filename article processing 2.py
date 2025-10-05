@@ -7,7 +7,7 @@ from gtts import gTTS
 import os
 from typing import List, Dict, Optional
 from dotenv import load_dotenv
-from huggingface_hub import InferenceClient
+from openai import OpenAI
 import re
 
 # Load environment variables
@@ -90,19 +90,19 @@ class WebScraper:
             await page.close()
 
 
-class HuggingFaceDataProcessor:
-    def __init__(self, model: str = "HuggingFaceH4/zephyr-7b-beta"):
+class LocalOpenAIProcessor:
+    def __init__(self, base_url: str = "http://127.0.0.1:1234/v1", model: str = "openai/gpt-oss-20b"):
+        self.base_url = base_url
         self.model = model
-        api_key = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
-        if not api_key:
-            raise ValueError("HUGGINGFACEHUB_API_TOKEN environment variable not set")
-
-        # Initialize Hugging Face Inference Client
-        self.client = InferenceClient(api_key=api_key)
+        # Initialize OpenAI client for local LM Studio
+        self.client = OpenAI(
+            base_url=base_url,
+            api_key="lm-studio"  # not needed for LM Studio, but required by client
+        )
 
     async def process_scraped_data(self, data: List[Dict]) -> List[Dict]:
-        """Process scraped data with Hugging Face API"""
+        """Process scraped data with local OpenAI API"""
         processed_data = []
 
         for i, item in enumerate(data):
@@ -114,11 +114,14 @@ class HuggingFaceDataProcessor:
                 print(f"Processing article {i+1}/{len(data)}: {item.get('title', 'Unknown')}")
 
                 # Avoid rate limiting
-                await asyncio.sleep(2)
+                await asyncio.sleep(1)
 
-                summary = await self._summarize_with_chat_model(item['text'])
+                summary = await self._summarize_with_local_model(item['text'])
+
+                # Generate audio from summary
                 audio = gTTS(text=summary, lang='en', slow=False)
                 audio.save("transcript.mp3")
+
                 processed_data.append({
                     **item,
                     'summary': summary,
@@ -131,43 +134,60 @@ class HuggingFaceDataProcessor:
 
         return processed_data
 
-    async def _summarize_with_chat_model(self, text: str) -> str:
-        """Generate a summary using a chat model"""
+    async def _summarize_with_local_model(self, text: str) -> str:
+        """Generate a summary using local OpenAI model"""
         if not text.strip():
             return "No content available"
 
+        # Truncate text to avoid token limits
         truncated_text = text[:4000]  # reasonable limit
 
-        # Create prompt for the model
-        prompt = (
-            "Summarize the following scientific article text in 3-4 concise sentences, "
-            "focusing on the research goal, methods, key findings, and conclusions:\n\n"
-            f"{truncated_text}"
-        )
-
         try:
-            # Call the chat model using asyncio.to_thread for async execution
+            # Use asyncio.to_thread to make the sync API call async
             response = await asyncio.to_thread(
-                self.client.chat_completion,
+                self.client.chat.completions.create,
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You are an expert scientific research summarizer. Provide clear, concise summaries of research articles."},
-                    {"role": "user", "content": prompt}
+                    {
+                        "role": "system",
+                        "content": "You are an expert scientific research summarizer. Provide clear, concise summaries of research articles."
+                    },
+                    {
+                        "role": "user",
+                        "content": (
+                            "Summarize the following scientific article text in 3-4 concise sentences, "
+                            "focusing on the research goal, methods, key findings, and conclusions:\n\n"
+                            f"{truncated_text}"
+                        )
+                    }
                 ],
                 max_tokens=350,
                 temperature=0.3
             )
 
-            # Extract text from the response
-            # Note: The response structure might vary by model
-            if hasattr(response, 'choices') and len(response.choices) > 0:
+            # Extract the summary from response
+            if response.choices and len(response.choices) > 0:
                 return response.choices[0].message.content.strip()
             else:
-                return "Summary generation failed - unexpected response format"
+                return "Summary generation failed - no response content"
 
         except Exception as e:
-            print(f"Hugging Face API error: {e}")
-            return f"Error generating summary: {str(e)}"
+            print(f"Local OpenAI API error: {e}")
+            # Fallback: return first 200 characters if API fails
+            return f"Error generating summary. First 200 chars: {text[:200]}..."
+
+    def test_connection(self) -> bool:
+        """Test connection to local OpenAI API"""
+        try:
+            models = self.client.models.list()
+            print("Connected to local OpenAI API. Available models:")
+            for model in models.data:
+                print(f" - {model.id}")
+            return True
+        except Exception as e:
+            print(f"Failed to connect to local OpenAI API: {e}")
+            print("Make sure LM Studio is running with the server active")
+            return False
 
 
 class PubMedArticleManager:
@@ -386,11 +406,15 @@ async def process_articles_from_csv(csv_path: str, topic: Optional[str] = None, 
         print(f"Scraping {len(articles)} articles...")
         scraped_data = await scrape_articles(articles, batch_size=2)
 
-        # Step 3: Process with Hugging Face
-        print("Initializing Hugging Face processor...")
-        processor = HuggingFaceDataProcessor()
+        # Step 3: Process with Local OpenAI
+        print("Initializing Local OpenAI processor...")
+        processor = LocalOpenAIProcessor()
 
-        print("Processing articles with AI...")
+        # Test connection first
+        if not processor.test_connection():
+            print("Warning: Could not connect to local OpenAI API. Continuing anyway...")
+
+        print("Processing articles with local AI...")
         processed_data = await processor.process_scraped_data(scraped_data)
 
         # Step 4: Save results

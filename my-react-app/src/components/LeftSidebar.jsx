@@ -47,7 +47,7 @@ const categories = [
   }
 ];
 
-export function LeftSidebar() {
+export function LeftSidebar({ onNavigateToAdvancedSearch }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoryCounts, setCategoryCounts] = useState({});
   const [loading, setLoading] = useState({});
@@ -141,15 +141,18 @@ export function LeftSidebar() {
           })}
         </div>
 
-        {/* Elemento decorativo retro */}
-        <div className="mt-8 p-4 bg-gradient-to-br from-white/95 to-orange-50/30 backdrop-blur-sm rounded-xl border border-white/60 dark:border-border/60 shadow-[0_8px_32px_-8px_rgba(252,61,33,0.15),_0_2px_8px_-2px_rgba(255,255,255,0.8)_inset] dark:shadow-[0_8px_32px_-8px_rgba(93,102,88,0.3),_0_2px_8px_-2px_rgba(0,0,0,0.3)_inset] transform-gpu perspective-1000 rotate-x-1 relative overflow-hidden before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-orange-100/20 dark:before:from-accent/20 before:to-transparent before:pointer-events-none"
-             style={{ backgroundColor: 'var(--muted)' }}>
+        {/* Elemento decorativo retro - Modo Explorador */}
+        <div 
+          className="mt-8 p-4 bg-gradient-to-br from-white/95 to-orange-50/30 backdrop-blur-sm rounded-xl border border-white/60 dark:border-border/60 shadow-[0_8px_32px_-8px_rgba(252,61,33,0.15),_0_2px_8px_-2px_rgba(255,255,255,0.8)_inset] dark:shadow-[0_8px_32px_-8px_rgba(93,102,88,0.3),_0_2px_8px_-2px_rgba(0,0,0,0.3)_inset] transform-gpu perspective-1000 rotate-x-1 relative overflow-hidden before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-orange-100/20 dark:before:from-accent/20 before:to-transparent before:pointer-events-none cursor-pointer hover:rotate-x-2 hover:rotate-y-1 hover:-translate-y-1 hover:shadow-[0_16px_48px_-12px_rgba(252,61,33,0.25),_0_4px_16px_-4px_rgba(255,255,255,0.9)_inset] dark:hover:shadow-[0_16px_48px_-12px_rgba(93,102,88,0.5),_0_4px_16px_-4px_rgba(0,0,0,0.4)_inset] transition-all duration-300"
+          style={{ backgroundColor: 'var(--muted)' }}
+          onClick={onNavigateToAdvancedSearch}
+        >
           <div className="flex items-center space-x-2 mb-2 relative z-10">
             <div className="w-3 h-3 bg-[#FC3D21] dark:bg-accent rounded-full shadow-sm"></div>
-            <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground drop-shadow-sm">Modo Explorador</span>
+            <span className="text-sm text-[#0B3D91] dark:text-sidebar-foreground drop-shadow-sm font-medium">Modo Explorador</span>
           </div>
           <p className="text-xs text-gray-600/80 dark:text-muted-foreground relative z-10">
-            Navega libremente por las categorías para descubrir investigaciones fascinantes.
+            Haz clic para acceder a la búsqueda avanzada de artículos.
           </p>
         </div>
       </div>

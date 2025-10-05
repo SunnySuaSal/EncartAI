@@ -1,9 +1,21 @@
+import { useState } from "react";
 import { Header } from "./components/Header";
 import { LeftSidebar } from "./components/LeftSidebar";
 import { RightSidebar } from "./components/RightSidebar";
 import { ChatInterface } from "./components/ChatInterface";
+import { AdvancedSearchToolbar } from "./components/AdvancedSearchToolbar";
 
 export default function App() {
+  const [currentView, setCurrentView] = useState('chat'); // 'chat' or 'advanced-search'
+
+  const handleNavigateToAdvancedSearch = () => {
+    setCurrentView('advanced-search');
+  };
+
+  const handleNavigateToChat = () => {
+    setCurrentView('chat');
+  };
+
   return (
     <div className="h-screen bg-[#e6f3ff] flex flex-col font-sans">
       {/* Header */}
@@ -12,10 +24,17 @@ export default function App() {
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Sidebar */}
-        <LeftSidebar />
+        <LeftSidebar onNavigateToAdvancedSearch={handleNavigateToAdvancedSearch} />
         
-        {/* Central Chat Interface */}
-        <ChatInterface />
+        {/* Central Content */}
+        <div className="flex-1 flex flex-col">
+          {currentView === 'chat' && <ChatInterface />}
+          {currentView === 'advanced-search' && (
+            <div className="flex-1 overflow-auto">
+              <AdvancedSearchToolbar onNavigateBack={handleNavigateToChat} />
+            </div>
+          )}
+        </div>
         
         {/* Right Sidebar */}
         <RightSidebar />
