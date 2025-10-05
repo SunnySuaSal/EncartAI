@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { ArticleSplitView } from "./ArticleSplitView";
 
 const categories = [
   {
@@ -48,6 +49,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
   const [error, setError] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   const performAdvancedSearch = async () => {
     setLoading(true);
@@ -312,7 +314,7 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
                     <Card
                       key={article.id}
                       className="p-4 hover:shadow-md transition-shadow cursor-pointer border border-gray-200"
-                      onClick={() => window.open(article.link, '_blank')}
+                      onClick={() => setSelectedArticle(article)}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
@@ -345,6 +347,12 @@ export function AdvancedSearchToolbar({ onNavigateBack }) {
           )}
         </div>
       </Card>
+      {selectedArticle && (
+        <ArticleSplitView
+          article={selectedArticle}
+          onBack={() => setSelectedArticle(null)}
+        />
+      )}
     </div>
   );
 }
