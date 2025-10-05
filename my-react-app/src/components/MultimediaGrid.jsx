@@ -10,7 +10,7 @@ export function MultimediaGrid({ multimedia, onAudioClick, onVideoClick, onLinkC
 
   return (
     <div className="mt-6">
-      <h4 className="text-lg font-semibold text-[#0B3D91] mb-4">Resúmenes Multimedia</h4>
+      <h4 className="text-lg font-semibold text-[#0B3D91] mb-4">Multimedia Summaries</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {multimedia.map((item) => (
           <Card
@@ -50,8 +50,8 @@ export function MultimediaGrid({ multimedia, onAudioClick, onVideoClick, onLinkC
               {/* Descripción */}
               <p className="text-sm text-gray-600 mb-4">
                 {item.type === 'audio' 
-                  ? 'Resumen de audio del artículo' 
-                  : 'Resumen de video del artículo'
+                  ? 'Audio summary of the article' 
+                  : 'Video summary of the article'
                 }
               </p>
 
@@ -71,7 +71,7 @@ export function MultimediaGrid({ multimedia, onAudioClick, onVideoClick, onLinkC
                   }`}
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Descargar
+                  Download
                 </Button>
                 <Button
                   variant="outline"

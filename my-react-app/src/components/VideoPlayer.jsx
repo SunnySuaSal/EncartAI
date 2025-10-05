@@ -60,7 +60,7 @@ export function VideoPlayer({ video, onDownload, onOpenOriginal }) {
             </div>
             <div>
               <h3 className="font-semibold text-[#0B3D91]">{video.title}</h3>
-              <p className="text-sm text-gray-600">Resumen de video</p>
+              <p className="text-sm text-gray-600">Video summary</p>
             </div>
           </div>
           
@@ -72,7 +72,7 @@ export function VideoPlayer({ video, onDownload, onOpenOriginal }) {
               className="text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10"
             >
               <Download className="w-4 h-4 mr-2" />
-              Descargar
+              Download
             </Button>
             <Button
               variant="outline"

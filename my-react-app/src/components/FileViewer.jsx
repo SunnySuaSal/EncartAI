@@ -35,7 +35,7 @@ export function FileViewer({ file, onClose, onOpenOriginal }) {
               className="text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
-              Ir a sitio web
+              Go to website
             </Button>
             <Button variant="ghost" size="sm" onClick={onClose}>
               <X className="w-4 h-4" />

@@ -15,7 +15,7 @@ export function ArticlesList({ articles, onArticleClick, onLinkClick }) {
 
   // Función para obtener el texto descriptivo (solo PDFs)
   const getDescription = () => {
-    return 'Haz clic para ver el documento';
+    return 'Click to view the document';
   };
 
   if (!articles || articles.length === 0) {
@@ -26,7 +26,7 @@ export function ArticlesList({ articles, onArticleClick, onLinkClick }) {
     <div className="space-y-3">
       <div className="flex items-center space-x-2 mb-4">
         <BookOpen className="w-5 h-5 text-[#0B3D91]" />
-        <h3 className="text-lg font-semibold text-[#0B3D91]">Documentos Encontrados</h3>
+        <h3 className="text-lg font-semibold text-[#0B3D91]">Documents Found</h3>
       </div>
       
       {articles.map((article) => (
@@ -57,7 +57,7 @@ export function ArticlesList({ articles, onArticleClick, onLinkClick }) {
                   onLinkClick && onLinkClick(article.link);
                 }}
                 className="p-2 text-[#FC3D21] hover:bg-[#FC3D21]/10 rounded-lg transition-colors"
-                title="Ir a sitio web"
+                title="Go to website"
               >
                 <ExternalLink className="w-4 h-4" />
               </button>

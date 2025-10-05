@@ -12,10 +12,10 @@ export function Header() {
             alt="NASA Logo"
             className="w-12 h-12 object-contain"
           />
-          <div>
-            <h1 className="text-white font-bold tracking-wide">NASA SPACE ENCARTA</h1>
-            <p className="text-blue-200 text-sm">Enciclopedia Espacial Interactiva</p>
-          </div>
+                <div>
+                  <h1 className="text-white font-bold tracking-wide">NASA SPACE ENCARTA</h1>
+                  <p className="text-blue-200 text-sm">Interactive Space Encyclopedia</p>
+                </div>
         </div>
 
         {/* Elementos decorativos */}

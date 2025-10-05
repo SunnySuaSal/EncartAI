@@ -52,7 +52,7 @@ export function AudioPlayer({ audio, onDownload, onOpenOriginal }) {
           </div>
           <div>
             <h3 className="font-semibold text-[#0B3D91]">{audio.title}</h3>
-            <p className="text-sm text-gray-600">Resumen de audio</p>
+            <p className="text-sm text-gray-600">Audio summary</p>
           </div>
         </div>
         
@@ -64,7 +64,7 @@ export function AudioPlayer({ audio, onDownload, onOpenOriginal }) {
             className="text-[#FC3D21] border-[#FC3D21] hover:bg-[#FC3D21]/10"
           >
             <Download className="w-4 h-4 mr-2" />
-            Descargar
+            Download
           </Button>
           <Button
             variant="outline"

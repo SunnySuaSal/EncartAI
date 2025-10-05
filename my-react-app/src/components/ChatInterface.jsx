@@ -56,21 +56,27 @@ export function ChatInterface() {
     const isArticleQuery = userMessage.toLowerCase().includes('artículo') || 
                          userMessage.toLowerCase().includes('investigación') ||
                          userMessage.toLowerCase().includes('estudio') ||
-                         userMessage.toLowerCase().includes('investigar');
+                         userMessage.toLowerCase().includes('investigar') ||
+                         userMessage.toLowerCase().includes('article') ||
+                         userMessage.toLowerCase().includes('research') ||
+                         userMessage.toLowerCase().includes('study') ||
+                         userMessage.toLowerCase().includes('investigate') ||
+                         userMessage.toLowerCase().includes('document') ||
+                         userMessage.toLowerCase().includes('documento');
 
     if (isArticleQuery) {
       return {
-        content: `He encontrado información relevante sobre "${userMessage}". Aquí tienes algunos documentos y resúmenes relacionados con tu consulta:`,
+        content: `I found relevant information about "${userMessage}". Here are some documents and summaries related to your query:`,
         pdfs: sampleArticles.pdfs,
         multimedia: sampleArticles.multimedia
       };
     }
 
     const responses = [
-      "Excelente pregunta sobre la investigación espacial. Según los datos de la NASA, este tema involucra múltiples factores que debemos considerar...",
-      "Los estudios realizados en la Estación Espacial Internacional muestran resultados fascinantes sobre este tema. Te puedo explicar más detalles...",
-      "La investigación espacial en esta área ha revelado datos sorprendentes. Los astronautas han observado efectos únicos que no se pueden replicar en la Tierra...",
-      "Este es un campo muy activo de investigación en NASA. Los últimos estudios sugieren nuevas direcciones para futuras misiones..."
+      "Excellent question about space research. According to NASA data, this topic involves multiple factors that we must consider...",
+      "Studies conducted on the International Space Station show fascinating results on this topic. I can explain more details...",
+      "Space research in this area has revealed surprising data. Astronauts have observed unique effects that cannot be replicated on Earth...",
+      "This is a very active field of research at NASA. Recent studies suggest new directions for future missions..."
     ];
     return {
       content: responses[Math.floor(Math.random() * responses.length)],
@@ -187,27 +193,27 @@ export function ChatInterface() {
             </div>
           )}
 
-          {messages.length === 0 && (
-            <div className="flex items-center justify-center min-h-[400px]">
-              <div className="text-center">
-                <p className="text-gray-500 text-lg">Escribe tu pregunta para comenzar</p>
-              </div>
-            </div>
-          )}
+              {messages.length === 0 && (
+                <div className="flex items-center justify-center min-h-[400px]">
+                  <div className="text-center">
+                    <p className="text-gray-500 text-lg">Write your question to get started</p>
+                  </div>
+                </div>
+              )}
         </div>
       </ScrollArea>
 
       {/* Input de mensaje */}
       <div className="p-8 bg-white border-t border-gray-200">
         <div className="flex space-x-4 max-w-3xl mx-auto">
-          <Input
-            type="text"
-            placeholder="Escribe tu mensaje..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
-            className="flex-1 border border-gray-300 focus:border-[#0B3D91] focus:ring-1 focus:ring-[#0B3D91] rounded-xl h-12 px-4 bg-white"
-          />
+            <Input
+              type="text"
+              placeholder="Write your message..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
+              className="flex-1 border border-gray-300 focus:border-[#0B3D91] focus:ring-1 focus:ring-[#0B3D91] rounded-xl h-12 px-4 bg-white"
+            />
           <Button
             onClick={() => handleSendMessage(inputValue)}
             disabled={!inputValue.trim() || isTyping}
@@ -251,7 +257,7 @@ export function ChatInterface() {
                 variant="outline"
                 className="text-white border-white hover:bg-white/20"
               >
-                Cerrar
+                Close
               </Button>
             </div>
           </div>
@@ -273,7 +279,7 @@ export function ChatInterface() {
                 variant="outline"
                 className="text-white border-white hover:bg-white/20"
               >
-                Cerrar
+                Close
               </Button>
             </div>
           </div>
