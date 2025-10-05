@@ -44,10 +44,10 @@ export function ArticleReader({ article, onClose, onOpenOriginal }) {
             
             <button
               onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-              title="Cerrar"
+              className="px-3 py-2 hover:bg-white/20 rounded-lg transition-colors text-gray-800 hover:text-white border border-white/30 hover:border-white/50 bg-white/10"
+              title="Close"
             >
-              <X className="w-5 h-5" />
+              <span className="text-sm font-medium">Close</span>
             </button>
           </div>
         </div>

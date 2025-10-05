@@ -174,6 +174,7 @@ export function RightSidebar({ onToggle }) {
             Monitor the progress of your research and explore new data.
           </p>
         </div>
+
       </div>
     </div>
   );
