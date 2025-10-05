@@ -6,6 +6,9 @@ import { ScrollArea } from "./ui/scroll-area";
 import { ArticlesList } from "./ArticlesList";
 import { ArticleReader } from "./ArticleReader";
 import { FileViewer } from "./FileViewer";
+import { AudioPlayer } from "./AudioPlayer";
+import { VideoPlayer } from "./VideoPlayer";
+import { MultimediaGrid } from "./MultimediaGrid";
 import sampleArticles from "../assets/sampleListArticles.json";
 
 export function ChatInterface() {
@@ -14,6 +17,8 @@ export function ChatInterface() {
   const [isTyping, setIsTyping] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedAudio, setSelectedAudio] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const handleSendMessage = async (message) => {
     if (!message.trim()) return;
@@ -37,7 +42,8 @@ export function ChatInterface() {
         id: (Date.now() + 1).toString(),
         type: 'bot',
         content: response.content,
-        articles: response.articles,
+        pdfs: response.pdfs,
+        multimedia: response.multimedia,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botResponse]);
@@ -54,8 +60,9 @@ export function ChatInterface() {
 
     if (isArticleQuery) {
       return {
-        content: `He encontrado información relevante sobre "${userMessage}". Aquí tienes algunos artículos relacionados con tu consulta:`,
-        articles: sampleArticles
+        content: `He encontrado información relevante sobre "${userMessage}". Aquí tienes algunos documentos y resúmenes relacionados con tu consulta:`,
+        pdfs: sampleArticles.pdfs,
+        multimedia: sampleArticles.multimedia
       };
     }
 
@@ -67,7 +74,8 @@ export function ChatInterface() {
     ];
     return {
       content: responses[Math.floor(Math.random() * responses.length)],
-      articles: null
+      pdfs: null,
+      multimedia: null
     };
   };
 
@@ -79,7 +87,26 @@ export function ChatInterface() {
   };
 
   const handleArticleClick = (article) => {
-    setSelectedFile(article);
+    // Determinar qué tipo de archivo es y abrir el reproductor correspondiente
+    switch (article.type) {
+      case 'pdf':
+        setSelectedFile(article);
+        break;
+      case 'audio':
+        setSelectedAudio({
+          ...article,
+          src: '/src/assets/audio_resumen.mp3'
+        });
+        break;
+      case 'video':
+        setSelectedVideo({
+          ...article,
+          src: '/src/assets/video_resumen.mp4'
+        });
+        break;
+      default:
+        setSelectedFile(article);
+    }
   };
 
   const handleLinkClick = (url) => {
@@ -92,6 +119,14 @@ export function ChatInterface() {
 
   const handleCloseFileViewer = () => {
     setSelectedFile(null);
+  };
+
+  const handleCloseAudioPlayer = () => {
+    setSelectedAudio(null);
+  };
+
+  const handleCloseVideoPlayer = () => {
+    setSelectedVideo(null);
   };
 
   return (
@@ -110,15 +145,25 @@ export function ChatInterface() {
                 }`}>
                   <p className="leading-relaxed">{message.content}</p>
                   
-                  {/* Mostrar artículos si existen */}
-                  {message.articles && (
+                  {/* Mostrar PDFs si existen */}
+                  {message.pdfs && (
                     <div className="mt-4">
                       <ArticlesList 
-                        articles={message.articles}
+                        articles={message.pdfs}
                         onArticleClick={handleArticleClick}
                         onLinkClick={handleLinkClick}
                       />
                     </div>
+                  )}
+
+                  {/* Mostrar multimedia si existe */}
+                  {message.multimedia && (
+                    <MultimediaGrid
+                      multimedia={message.multimedia}
+                      onAudioClick={handleArticleClick}
+                      onVideoClick={handleArticleClick}
+                      onLinkClick={handleLinkClick}
+                    />
                   )}
                 </div>
                 <p className="text-xs text-gray-500 mt-2 px-1">
@@ -189,6 +234,50 @@ export function ChatInterface() {
           onClose={handleCloseFileViewer}
           onOpenOriginal={handleLinkClick}
         />
+      )}
+
+      {/* Reproductor de audio */}
+      {selectedAudio && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="w-full max-w-2xl">
+            <AudioPlayer
+              audio={selectedAudio}
+              onDownload={handleLinkClick}
+              onOpenOriginal={handleLinkClick}
+            />
+            <div className="mt-4 text-center">
+              <Button
+                onClick={handleCloseAudioPlayer}
+                variant="outline"
+                className="text-white border-white hover:bg-white/20"
+              >
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reproductor de video */}
+      {selectedVideo && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="w-full max-w-4xl">
+            <VideoPlayer
+              video={selectedVideo}
+              onDownload={handleLinkClick}
+              onOpenOriginal={handleLinkClick}
+            />
+            <div className="mt-4 text-center">
+              <Button
+                onClick={handleCloseVideoPlayer}
+                variant="outline"
+                className="text-white border-white hover:bg-white/20"
+              >
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
