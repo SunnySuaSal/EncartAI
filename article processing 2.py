@@ -476,14 +476,15 @@ def create_sample_csv():
     ]
 
     df = pd.DataFrame(sample_data)
-    df.to_csv('pmc_articles.csv', index=False)
-    print("Sample CSV file 'pmc_articles.csv' created with 8 example articles")
+    df.to_csv('sample_pmc_articles.csv', index=False)
+    print("Sample CSV file 'sample_pmc_articles.csv' created with 8 example articles")
 
 
 if __name__ == "__main__":
     # Create sample CSV if it doesn't exist
     if not os.path.exists('pmc_articles.csv'):
         create_sample_csv()
+        exit(1)
 
     # Example usage patterns:
 
@@ -494,7 +495,7 @@ if __name__ == "__main__":
     print("\n" + "="*50 + "\n")
 
     # 2. Process articles about chosen topic  (max 10 articles)
-    topic = 'virus'     # <- Here goes the search query
+    topic = 'cheese'     # <- Here goes the search query
     print("=== Processing articles about " + topic + " ===")
     asyncio.run(process_articles_from_csv("pmc_articles.csv", topic))
 
